@@ -1,5 +1,6 @@
 import complete.storage
 
+# Function to add tasks
 def add_tasks(title, description=""):
     tasks = complete.storage.load_tasks()
     task_id = len(tasks) + 1
@@ -13,7 +14,7 @@ def add_tasks(title, description=""):
     complete.storage.save_tasks(tasks)
     print("Task added successfully")
 
-
+# Function to Show tasks
 def list_tasks():
     tasks = complete.storage.load_tasks()
     if not tasks:
@@ -27,6 +28,7 @@ def list_tasks():
         print(f"Status: {task['status']}")
         print("-" * 20)
 
+# Function to mark task as completed
 def mark_task_completed(task_id):
     tasks = complete.storage.load_tasks()
     for task in tasks:
@@ -36,3 +38,15 @@ def mark_task_completed(task_id):
             print("Task marked as completed")
             return
     print("Task not found")
+
+def delete_task(task_id):
+    tasks = complete.storage.load_tasks()
+    updated_tasks = [task for task in tasks if task["id"] != task_id]
+    if len(tasks) == len(updated_tasks):
+        print("Task not found")
+        return
+    # Reassign IDs
+    for index, task in enumerate(updated_tasks):
+        task["id"] = index + 1
+    complete.storage.save_tasks(updated_tasks)
+    print("Task deleted Successfully")
