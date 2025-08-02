@@ -15,6 +15,7 @@ while True:
     if choice == "1":
         title = input("Enter task title: ")
         description = input("Enter description (optional): ")
+        due_date = input("Enter due date (DD-MM-YYYY format): ")
         task_manager.add_tasks(title, description)
     elif choice == "2":
         task_manager.list_tasks()
