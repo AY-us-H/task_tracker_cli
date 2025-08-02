@@ -3,7 +3,8 @@
 import json
 import os
 
-TASK_FILE = "tasks.json"
+# Create file directory path relative to the project root
+TASK_FILE = os.path.join("file", "tasks.json")
 
 """
 1. check if the file exists
@@ -12,6 +13,11 @@ TASK_FILE = "tasks.json"
 4. if the file does not exist, return an empty list
 """
 def load_tasks():
+    # Ensure the file directory exists
+    file_dir = os.path.dirname(TASK_FILE)
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    
     if os.path.exists(TASK_FILE):
         with open(TASK_FILE, "r") as file:      
             return json.load(file)      
@@ -23,5 +29,10 @@ def load_tasks():
 3. indent the file by 4 spaces
 """
 def save_tasks(tasks):
+    # Ensure the file directory exists
+    file_dir = os.path.dirname(TASK_FILE)
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    
     with open(TASK_FILE, "w") as file:
         json.dump(tasks, file, indent=4)
