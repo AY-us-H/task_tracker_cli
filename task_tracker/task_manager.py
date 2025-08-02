@@ -9,20 +9,20 @@ def add_tasks(title, description="", due_date=""):
     tasks = storage.load_tasks()
     task_id = len(tasks) + 1
 
-    # validating due_date formate
-    try:
-        if due_date:
-            datetime.strptime(due_date, "%d-%m-%Y")
-    except ValueError:
-        print("Ivalid date format. Use DD-MM-YYYY format.")
-        return
+    # validating due_date format
+    if due_date.strip():  # Only validate if due_date is not empty or just whitespace
+        try:
+            datetime.strptime(due_date.strip(), "%d-%m-%Y")  #check if the due_date string matches the format
+        except ValueError:
+            print("Invalid date format. Use DD-MM-YYYY format.")
+            return
 
     task = {
         "id" : task_id,
         "title" : title,
         "description" : description,
         "status" : "Pending",
-        "due_date": due_date
+        "due_date": due_date.strip() if due_date.strip() else ""
     }
     tasks.append(task)
     storage.save_tasks(tasks)
@@ -39,7 +39,10 @@ def list_tasks():
     def sort_tasks(task):
         return task.get("due_date") or "31-12-9999" #tasks withput due_date will go last
 
-    for task in tasks:
+    # sort tasks by due date
+    sorted_tasks = sorted(tasks, key=sort_tasks)
+    
+    for task in sorted_tasks:
         print(f"ID: {task['id']}")
         print(f"Title: {task['title']}")
         if task['description']:
@@ -60,13 +63,14 @@ def mark_task_completed(task_id):
             return
     print("Task not found")
 
+# function to delete a task using task_id
 def delete_task(task_id):
     tasks = storage.load_tasks()
     updated_tasks = [task for task in tasks if task["id"] != task_id]
     if len(tasks) == len(updated_tasks):
         print("Task not found")
         return
-    # Reassign IDs
+    # reassign IDs
     for index, task in enumerate(updated_tasks):
         task["id"] = index + 1
     storage.save_tasks(updated_tasks)

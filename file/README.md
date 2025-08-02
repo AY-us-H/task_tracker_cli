@@ -1,10 +1,10 @@
 # Task Tracker CLI Application
 
-A simple command-line interface application for managing your daily tasks. This application helps you keep track of what needs to be done, mark tasks as completed, and maintain an organized list of your responsibilities.
+A simple command-line interface application for managing daily tasks. This application helps you keep track of what needs to be done, mark tasks as completed, and maintain an organized list of your responsibilities. The tasks are also sorted according to date.
 
 ## What This Application Does
 
-The Task Tracker is designed to be straightforward and easy to use. It lets you add new tasks with titles and optional descriptions, view all your current tasks, mark them as completed when you finish them, and remove tasks you no longer need. All your task data is automatically saved to a JSON file, so you won't lose your progress when you close the application.
+The Task Tracker is designed to be straightforward. It lets you add new tasks with titles and optional descriptions, view all your current tasks, mark them as completed, and remove tasks you no longer need. All your task data is automatically saved to a JSON file.
 
 ## How It Works
 
