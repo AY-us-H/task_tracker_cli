@@ -1,6 +1,6 @@
 # Task Tracker CLI Application
 
-A simple command-line interface application for managing daily tasks with due date support and timestamps. This application helps you keep track of what needs to be done, mark tasks as completed, and maintain an organized list of your responsibilities. Tasks are automatically sorted by due date for better organization.
+A simple command-line interface application for managing daily tasks with due date support and timestamps. This application helps keep track of what needs to be done, mark tasks as completed, and maintain an organized list of your tasks. Tasks are automatically sorted by due date for better organization.
 
 ## What This Application Does
 
