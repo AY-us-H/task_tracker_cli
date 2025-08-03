@@ -35,13 +35,21 @@ def list_tasks():
         print("No tasks found")
         return
     
-    # sortig tasks by due_date if available
+    # sorting tasks by due_date if available
     def sort_tasks(task):
-        return task.get("due_date") or "31-12-9999" #tasks withput due_date will go last
-
-    # sort tasks by due date
+        due_date = task.get("due_date")
+        if due_date and due_date.strip():
+            try:
+                # converting string to datetime object for proper sorting
+                return datetime.strptime(due_date.strip(), "%d-%m-%Y")
+            except ValueError:
+                # if date format is invalid, put it in the end
+                print("Invalid format!")
+        else:
+            return datetime.max  # tasks without the due date goes in the end
+        
     sorted_tasks = sorted(tasks, key=sort_tasks)
-    
+        
     for task in sorted_tasks:
         print(f"ID: {task['id']}")
         print(f"Title: {task['title']}")
