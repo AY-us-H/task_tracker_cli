@@ -34,5 +34,6 @@ def save_tasks(tasks):
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
     
+    
     with open(TASK_FILE, "w") as file:
         json.dump(tasks, file, indent=4)

@@ -62,7 +62,7 @@ def list_tasks():
         if task.get("due_date"):
             print(f"Due Date: {task['due_date']}")
         if task.get("created_at"):
-            print(f"Created at: {task['created_at']}")
+            print(f"Created at : {task['created_at']}")
         print("-" * 20)
 
 # Function to mark task as completed
