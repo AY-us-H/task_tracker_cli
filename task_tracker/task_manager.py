@@ -16,13 +16,16 @@ def add_tasks(title, description="", due_date=""):
         except ValueError:
             print("Invalid date format. Use DD-MM-YYYY format.")
             return
+    
+    created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")  #adding timestamps when the tasks are created
 
     task = {
         "id" : task_id,
         "title" : title,
         "description" : description,
         "status" : "Pending",
-        "due_date": due_date.strip() if due_date.strip() else ""
+        "due_date": due_date.strip() if due_date.strip() else "",
+        "created_at": created_at
     }
     tasks.append(task)
     storage.save_tasks(tasks)
@@ -58,6 +61,8 @@ def list_tasks():
         print(f"Status: {task['status']}")
         if task.get("due_date"):
             print(f"Due Date: {task['due_date']}")
+        if task.get("created_at"):
+            print(f"Created at: {task['created_at']}")
         print("-" * 20)
 
 # Function to mark task as completed
